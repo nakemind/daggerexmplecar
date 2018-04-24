@@ -11,6 +11,8 @@ import com.dagger2.example.car.Config;
 import com.dagger2.example.car.Engine;
 import com.dagger2.example.car.Seat;
 import com.dagger2.example.car.Wheel;
+import com.dagger2.example.coffe.CoffeeMaker;
+import com.dagger2.example.coffe.DripCoffeeModule;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -19,6 +21,13 @@ import dagger.Component;
 
 public class DaggerDemo1 extends AppCompatActivity {
 
+
+
+    @Singleton
+    @Component(modules = { DripCoffeeModule.class })
+    public interface CoffeeShop {
+        CoffeeMaker maker();
+    }
 
 //    @Singleton
 //    @Component(modules = { DripCoffeeModule.class })
@@ -32,11 +41,13 @@ public class DaggerDemo1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        CoffeeShop ss=DaggerDaggerDemo1_CoffeeShop.builder().build();
 
+        ss.maker().brew();
+        //Log.d("akui",test1.toString());
 
-        Log.d("akui",test1.toString());
-
-
+//        CoffeeShop coffeeShop = DaggerCoffeeApp_CoffeeShop.builder().build();
+//        coffeeShop.maker().brew();
 
 //        CoffeeShop coffeeShop = DaggerDaggerDemo1_CoffeeShop.builder().build();
 //        coffeeShop.maker().brew();
